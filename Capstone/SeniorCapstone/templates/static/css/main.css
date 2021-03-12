@@ -1,0 +1,52 @@
+body{
+    background-color: #333;
+    color: #f5f5f5;
+}
+.jumbotron-image{
+    object-fit: cover;
+    opacity: .25;
+    width: 100%;
+}
+
+.no-padding{
+    padding: 0;
+}
+.header-hero{
+    height: 60vh;
+    width: 100vw;
+    background: #333;
+    overflow: hidden;
+    position: absolute;
+}
+.jumbotron-text{
+    z-index: 1;
+    position: absolute;
+    margin-top: 200px;
+}
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.Playfair{
+    font-family: 'Playfair Display', serif;
+}
+.heading-1{
+    font-size: 36px;
+}
+.orange{
+    color: #FCA838;
+}
+.source-link{
+    text-decoration: none; 
+    color: #FCA838; 
+}
+.archivo{
+    font-family: 'Archivo Narrow', sans-serif;
+}
+#state-select{
+    width: 50px;
+    height: 25px;
+    font-size: 1rem;
+}

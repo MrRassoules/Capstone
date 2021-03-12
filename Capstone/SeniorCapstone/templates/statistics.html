@@ -1,0 +1,11 @@
+{% extends 'default-head.html' %}
+{% block content %}
+    <br />
+    <h1 class="Playfair orange center">Graduation Rate by State (High School)</h1>
+    <p class="lead center">Statistics by: &nbsp; <a href="https://nces.ed.gov/programs/coe/indicator_coi.asp" style="text-decoration: none; color: #FCA838;">https://nces.ed.gov/programs/coe/indicator_coi.asp</a></p>
+    {% for state_demographic in object_list %}
+    <h1>{{ state_demographic.state }}</h1>
+    <h3>{{ state_demographic.white_median_income }}</h3>
+    <h3>{{ state_demographic.black_median_income }}</h3>
+    {% endfor %}
+{% endblock %}
