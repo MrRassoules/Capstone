@@ -46,7 +46,27 @@ body{
     font-family: 'Archivo Narrow', sans-serif;
 }
 #state-select{
-    width: 50px;
-    height: 25px;
+    width: 250px;
+    height: 55px;
+    padding-left: 10px;
+    padding-bottom: 5px;
     font-size: 1rem;
+    margin-bottom: 0;
+}
+#data-button{
+    margin-bottom: 5px;
+}
+.no-bottom-space{
+    margin-bottom: 1px;
+    padding-bottom: 1px;
+}
+a{
+    text-decoration: none; 
+    color: #FCA838;
+}
+a:hover{
+    color: white;
+}
+.white{
+    color: #f3f3f3;
 }

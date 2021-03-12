@@ -1,28 +1,38 @@
 {% extends 'default-head.html' %}
+{% load mathfilters %}
 {% block content %}
     <br />
     <div class="container-fluid">
         <h1 class="Playfair orange center">State Demographics and Income</h1>
-        <p class="lead center">Highschool Statistics by: &nbsp; <a href="https://nces.ed.gov/programs/coe/indicator_coi.asp" style="text-decoration: none; color: #FCA838;">https://nces.ed.gov/programs/coe/indicator_coi.asp</a></p>
-        <p class="lead center">Income statistics compiled by the United States&nbsp;<a href="http://census.gov" style="text-decoration: none; color: #FCA838;">Census</a></p>
+        <p class="archivo lead center no-bottom-space">Highschool Statistics by: &nbsp; <a href="https://nces.ed.gov/programs/coe/indicator_coi.asp">https://nces.ed.gov/programs/coe/indicator_coi.asp</a></p>
+        <p class="archivo lead center">Income statistics compiled by the United States&nbsp;<a href="http://census.gov">Census</a></p>
     </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm"></div>
-            <div class="col-sm center">
-                <form method="POST" action="/stats/">
+            <div class="col-sm">
+                <form method="POST" action="/stats/" class="center">
                     {% csrf_token %}
                     <select name="state_list" id="state-select">
                         {% for state_demographic in state_demographics %}
-                        <option value="{{ state_demographic.state }}" class="Archivo">{{ state_demographic.state }}</option>
+                            <option value="{{ state_demographic.state }}" class="Archivo">{{ state_demographic.state }}</option>
                         {% endfor %}
                     </select>
-                    <br>
-                    <button type="submit" class="archivo btn btn-warning"> See State Data </button>
+                    <button type="submit" id="data-button" class="archivo btn btn-warning"> See State Data </button>
                 </form>
             </div>
             <div class="col-sm"></div>
         </div>
     </div>
-    <h1>{{ selected_state.state }}</h1>
+    {% if selected_state %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <h1 class="archivo">{{ selected_state.state }}</h1>
+            </div>
+            <h5>Black High School Students in {{ selected_state.state }}:</h5>
+            <p>Graduation Rate: {{ selected_state.black_highschool_grad_rate|mul:"100" }}</p>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
