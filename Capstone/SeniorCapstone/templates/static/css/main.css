@@ -46,15 +46,10 @@ body{
     font-family: 'Archivo Narrow', sans-serif;
 }
 #state-select{
-    width: 250px;
-    height: 55px;
-    padding-left: 10px;
-    padding-bottom: 5px;
-    font-size: 1rem;
-    margin-bottom: 0;
+
 }
 #data-button{
-    margin-bottom: 5px;
+
 }
 .no-bottom-space{
     margin-bottom: 1px;
@@ -69,4 +64,7 @@ a:hover{
 }
 .white{
     color: #f3f3f3;
+}
+.demographic_text{
+    font-size: 20px;
 }
