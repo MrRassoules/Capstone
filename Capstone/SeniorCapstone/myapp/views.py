@@ -39,9 +39,11 @@ class StatisticsData(APIView):
     def get(self, request, format=None):
         state_information = StateDemographic.objects.all()
         labels = state_information.values_list("state", flat=True)
-        chartdata = state_information.values_list("black_median_income", flat=True)
+        blackMedianIncome = state_information.values_list("black_median_income", flat=True)
+        whiteMedianIncome = state_information.values_list("white_median_income", flat=True)
         data = {
             "labels" : labels,
-            "chartdata": chartdata,
+            "blackMedianIncome": blackMedianIncome,
+            "whiteMedianIncome": whiteMedianIncome,
         }
         return Response(data)

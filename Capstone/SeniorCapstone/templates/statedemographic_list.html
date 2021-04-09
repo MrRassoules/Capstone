@@ -50,22 +50,29 @@
         </div>
     </div>
     {% endif %}
-    <div class="container">
-        <div class="card card-body bg-light">
-            <canvas id="myChart" width="400" height="400"></canvas>
+    <br />
+    <br />
+    <div class="chart-height">
+        <div class="container">
+            <h5 class="Playfair orange center"> Aggregate Income Statistics by Location and Race</h5>
+            <div class="card card-body bg-light">
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
         </div>
     </div>
     <script>
         $(document).ready(function(){
             var endpoint = '/visualstats/'
             var labels = [];
-            var chartdata = [];
+            var blackMedianIncome = [];
+            var whiteMedianIncome = [];
             $.ajax({
                 method : "GET",
                 url : endpoint,
                 success: function(data){
                     labels = data.labels
-                    chartdata = data.chartdata
+                    blackMedianIncome = data.blackMedianIncome
+                    whiteMedianIncome = data.whiteMedianIncome
                     var ctx = document.getElementById('myChart');
                     var myChart = new Chart(ctx, {
                         type: 'bar',
@@ -73,12 +80,19 @@
                             labels: labels,
                             datasets: [{
                                 label: 'Median Income of Black Families',
-                                data: chartdata,
+                                data: blackMedianIncome,
                                 backgroundColor: 'rgb(252,168,40)',
                                 color: "rgb(252, 168 ,40)",
+                            },
+                            {
+                                label: 'Median Income of White Families',
+                                data: whiteMedianIncome,
+                                backgroundColor: 'rgb(150, 150, 150)',
                             }]
                         },
                         options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
                             scales: {
                                 y: {
                                     beginAtZero: true
