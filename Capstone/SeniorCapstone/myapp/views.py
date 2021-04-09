@@ -41,9 +41,17 @@ class StatisticsData(APIView):
         labels = state_information.values_list("state", flat=True)
         blackMedianIncome = state_information.values_list("black_median_income", flat=True)
         whiteMedianIncome = state_information.values_list("white_median_income", flat=True)
+        blackHighSchoolGrad = state_information.values_list("black_highschool_grad_rate", flat=True)
+        whiteHighSchoolGrad = state_information.values_list("white_highschool_grad_rate", flat=True)
+        blackCollegeGrad = state_information.values_list("black_college_grad_rate", flat=True)
+        whiteCollegeGrad = state_information.values_list("white_college_grad_rate", flat=True)
         data = {
             "labels" : labels,
             "blackMedianIncome": blackMedianIncome,
             "whiteMedianIncome": whiteMedianIncome,
+            "blackHighSchoolGrad": blackHighSchoolGrad,
+            "whiteHighSchoolGrad": whiteHighSchoolGrad,
+            "blackCollegeGrad" : blackCollegeGrad,
+            "whiteCollegeGrad" : whiteCollegeGrad,
         }
         return Response(data)

@@ -37,6 +37,8 @@
                 <p class="archivo no-bottom-space demographic_text">Public High School Graduation Rate: {{ selected_state.black_highschool_grad_rate|mul:"100" }}%</p>
                 <p class="archivo no-bottom-space demographic_text">Public College Graduation Rate: {{ selected_state.black_college_grad_rate|mul:"100" }}%</p>
                 <p class="archivo no-bottom-space demographic_text">Household Median Income: ${{ selected_state.black_median_income }}</p>
+                <p class="archivo no-bottom-space demographic_text">Black Population Percentage: {{ selected_state.black_population_percentage|mul:"100" }}%</p>
+                <p class="archivo no-bottom-space demographic_text">Black Population Amount: {{ selected_state.black_population_raw_amount }}</p>
             </div>
             <div class="col-sm" style="margin-top: 5px;">
                 <br />
@@ -45,6 +47,8 @@
                 <p class="archivo no-bottom-space demographic_text">Public High School Graduation Rate: {{ selected_state.white_highschool_grad_rate|mul:"100" }}%</p>
                 <p class="archivo no-bottom-space demographic_text">Public College Graduation Rate: {{ selected_state.white_college_grad_rate|mul:"100" }}%</p>
                 <p class="archivo no-bottom-space demographic_text">Household Median Income: ${{ selected_state.white_median_income }}</p>
+                <p class="archivo no-bottom-space demographic_text">White Population Percentage: {{ selected_state.white_population_percentage|mul:"100" }}%</p>
+                <p class="archivo no-bottom-space demographic_text">White Population Amount: {{ selected_state.white_population_raw_amount }}</p>
             </div>
             <div class="col-sm"></div>
         </div>
@@ -60,12 +64,34 @@
             </div>
         </div>
     </div>
+    <br />
+    <div class="chart-height">
+        <div class="container">
+            <h5 class="Playfair orange center"> Aggregate Public College Graduation Rates by Location and Race (Where Availible)</h5>
+            <div class="card card-body bg-light">
+                <canvas id="myChart3" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="chart-height">
+        <div class="container">
+            <h5 class="Playfair orange center"> Aggregate High School Graduation Rates by Location and Race</h5>
+            <div class="card card-body bg-light">
+                <canvas id="myChart2" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
     <script>
         $(document).ready(function(){
             var endpoint = '/visualstats/'
             var labels = [];
             var blackMedianIncome = [];
             var whiteMedianIncome = [];
+            var blackHighSchoolGrad = [];
+            var whiteHighSchoolGrad = [];
+            var blackCollegeGrad = [];
+            var whiteCollegeGrad = [];
             $.ajax({
                 method : "GET",
                 url : endpoint,
@@ -73,6 +99,10 @@
                     labels = data.labels
                     blackMedianIncome = data.blackMedianIncome
                     whiteMedianIncome = data.whiteMedianIncome
+                    blackHighSchoolGrad = data.blackHighSchoolGrad
+                    whiteHighSchoolGrad = data.whiteHighSchoolGrad
+                    blackCollegeGrad = data.blackCollegeGrad
+                    whiteCollegeGrad = data.whiteCollegeGrad
                     var ctx = document.getElementById('myChart');
                     var myChart = new Chart(ctx, {
                         type: 'bar',
@@ -89,6 +119,62 @@
                                 data: whiteMedianIncome,
                                 backgroundColor: 'rgb(150, 150, 150)',
                             }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                    
+                    var ctx = document.getElementById('myChart2');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'High School Graduation Rate of Black Families',
+                                data: blackHighSchoolGrad,
+                                backgroundColor: 'rgb(252,168,40)',
+                                color: "rgb(252, 168 ,40)",
+                            },
+                                {
+                                    label: 'High School Graduation Rate of White Families',
+                                    data: whiteHighSchoolGrad,
+                                    backgroundColor: 'rgb(150, 150, 150)',
+                                }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                    
+                    var ctx = document.getElementById('myChart3');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'College Graduation Rate of Black Families',
+                                data: blackCollegeGrad,
+                                backgroundColor: 'rgb(252,168,40)',
+                                color: "rgb(252, 168 ,40)",
+                            },
+                                {
+                                    label: 'College Graduation Rate of White Families',
+                                    data: whiteCollegeGrad,
+                                    backgroundColor: 'rgb(150, 150, 150)',
+                                }]
                         },
                         options: {
                             responsive: true,
