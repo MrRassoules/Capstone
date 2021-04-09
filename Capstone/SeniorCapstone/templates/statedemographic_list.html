@@ -50,4 +50,51 @@
         </div>
     </div>
     {% endif %}
+    <div class="container">
+        <div class="card card-body bg-light">
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            var endpoint = '/visualstats/'
+            var labels = [];
+            var chartdata = [];
+            $.ajax({
+                method : "GET",
+                url : endpoint,
+                success: function(data){
+                    labels = data.labels
+                    chartdata = data.chartdata
+                    var ctx = document.getElementById('myChart');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Median Income of Black Families',
+                                data: chartdata,
+                                backgroundColor: 'rgb(252,168,40)',
+                                color: "rgb(252, 168 ,40)",
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+
+                    console.log("Success");
+                },
+                error : function(){
+                    console.log("Something went wrong here!");
+                    console.log(error_data)
+                }
+            })
+        })
+</script>
+
 {% endblock %}

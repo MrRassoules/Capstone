@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'import_export',
     'myapp',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
