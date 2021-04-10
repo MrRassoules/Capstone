@@ -71,3 +71,23 @@ a:hover{
 canvas{
     height: 600px !important;
 }
+.acm-stats{
+    margin-top: 500px;
+    font-family: "Archivo Narrow", sans-serif;
+}
+.black{
+    color: #333;
+}
+.spacer{
+    height: 50px;
+}
+.small-container{
+    width: 1000px;
+}
+.card-padding{
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.data-button{
+    width: 200px;
+}

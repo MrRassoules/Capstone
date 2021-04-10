@@ -15,6 +15,9 @@
                     {% csrf_token %}
                     <div class="form-group mb-2">
                         <select name="state_list" id="state-select" class="form-select form-control">
+                            <option value="none" selected disabled hidden>
+                                Select a State
+                            </option>
                             {% for state_demographic in state_demographics %}
                             <option value="{{ state_demographic.state }}" class="archivo">{{ state_demographic.state }}</option>
                             {% endfor %}
@@ -153,7 +156,7 @@
                             maintainAspectRatio: false,
                             scales: {
                                 y: {
-                                    beginAtZero: true
+                                    beginAtZero: false
                                 }
                             }
                         }
@@ -181,7 +184,7 @@
                             maintainAspectRatio: false,
                             scales: {
                                 y: {
-                                    beginAtZero: true
+                                    beginAtZero: false
                                 }
                             }
                         }
