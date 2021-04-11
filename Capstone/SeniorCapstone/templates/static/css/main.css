@@ -45,12 +45,6 @@ body{
 .archivo{
     font-family: 'Archivo Narrow', sans-serif;
 }
-#state-select{
-
-}
-#data-button{
-
-}
 .no-bottom-space{
     margin-bottom: 1px;
     padding-bottom: 1px;
@@ -90,4 +84,11 @@ canvas{
 }
 .data-button{
     width: 200px;
+}
+.home-button{
+    z-index: 1 !important;
+}
+.spacer-lg{
+    height: 200px;
+    margin-top: 200px;
 }
