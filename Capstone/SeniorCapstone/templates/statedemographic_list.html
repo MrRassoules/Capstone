@@ -87,7 +87,10 @@
     </div>
     <script>
         $(document).ready(function(){
+            // Create the endpoint to gather the data from REST API
             var endpoint = '/visualstats/'
+            
+            // Create all the list that will make up the charts
             var labels = [];
             var blackMedianIncome = [];
             var whiteMedianIncome = [];
@@ -95,9 +98,12 @@
             var whiteHighSchoolGrad = [];
             var blackCollegeGrad = [];
             var whiteCollegeGrad = [];
+            
+            // Ajax call to retrive the information from the REST API
             $.ajax({
                 method : "GET",
                 url : endpoint,
+                // Upon load of the page fill all of the parameters 
                 success: function(data){
                     labels = data.labels
                     blackMedianIncome = data.blackMedianIncome
@@ -106,6 +112,7 @@
                     whiteHighSchoolGrad = data.whiteHighSchoolGrad
                     blackCollegeGrad = data.blackCollegeGrad
                     whiteCollegeGrad = data.whiteCollegeGrad
+                    // Create the Income chart 
                     var ctx = document.getElementById('myChart');
                     var myChart = new Chart(ctx, {
                         type: 'bar',
@@ -133,7 +140,7 @@
                             }
                         }
                     });
-                    
+                    // Create the High School Graduation Chart
                     var ctx = document.getElementById('myChart2');
                     var myChart = new Chart(ctx, {
                         type: 'bar',
@@ -161,7 +168,7 @@
                             }
                         }
                     });
-                    
+                    // Create the College Graduation chart
                     var ctx = document.getElementById('myChart3');
                     var myChart = new Chart(ctx, {
                         type: 'bar',
@@ -189,9 +196,9 @@
                             }
                         }
                     });
-
                     console.log("Success");
                 },
+                // if loading the information fails print out to console 
                 error : function(){
                     console.log("Something went wrong here!");
                     console.log(error_data)
