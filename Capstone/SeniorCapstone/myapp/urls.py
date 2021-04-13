@@ -9,5 +9,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('stats/', views.statistics, name = 'state-demographic-list'),
-    path('visualstats/', views.StatisticsData().as_view(), name = 'visual-stats')
+    path('visualstats/', views.StatisticsData().as_view(), name = 'visual-stats'),
+    path('history/', views.history, name = 'history')
 ]

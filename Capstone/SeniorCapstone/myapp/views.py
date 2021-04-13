@@ -55,3 +55,6 @@ class StatisticsData(APIView):
             "whiteCollegeGrad" : whiteCollegeGrad,
         }
         return Response(data)
+
+def history(request):
+    return render(request, 'history.html')
