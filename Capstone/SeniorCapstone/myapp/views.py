@@ -5,7 +5,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.list import ListView
 from myapp.models import StateDemographic
-from django.core import serializers
 import json
 
 # Create your views here.
@@ -21,7 +20,7 @@ def statistics(request):
     if request.method == 'POST':
         selected_state = state_demographics.filter(state = request.POST.get('state_list')).first()
         context.update({
-            'selected_state' : selected_state
+            'selected_state' : selected_state,
         })
         
     # Render the page
